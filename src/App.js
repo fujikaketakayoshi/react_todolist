@@ -22,8 +22,17 @@ export const App = () => {
         const deletedTodoList = [...todoList];
         deletedTodoList.splice(index,1);
         setNewTodoList(deletedTodoList);
-    }
+    };
     
+    const onClickSwitch = (index) => {
+        const switchTodoList = [...todoList];
+        if (switchTodoList[index].status === "作業中") {
+            switchTodoList[index].status = '完了';
+        } else if (switchTodoList[index].status === "完了") {
+            switchTodoList[index].status = '作業中';
+        }
+        setNewTodoList(switchTodoList);
+    };
     
     return (
         <>
@@ -42,7 +51,7 @@ export const App = () => {
                             <tr>
                                 <td>{index}</td>
                                 <td>{todo.comment}</td>
-                                <td><button>{todo.status}</button></td>
+                                <td><button onClick={() => onClickSwitch(index)}>{todo.status}</button></td>
                                 <td><button onClick={() => onClickDelete(index)}>削除</button></td>
                             </tr>
                         ))}
