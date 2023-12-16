@@ -14,10 +14,16 @@ export const App = () => {
             comment: todoText,
             status: "作業中"
         }
-        
         todoList.push(newTodo);
         setTodoText("");
     };
+    
+    const onClickDelete = (index) => {
+        const deletedTodoList = [...todoList];
+        deletedTodoList.splice(index,1);
+        setNewTodoList(deletedTodoList);
+    }
+    
     
     return (
         <>
@@ -37,7 +43,7 @@ export const App = () => {
                                 <td>{index}</td>
                                 <td>{todo.comment}</td>
                                 <td><button>{todo.status}</button></td>
-                                <td><button>削除</button></td>
+                                <td><button onClick={() => onClickDelete(index)}>削除</button></td>
                             </tr>
                         ))}
                     </tbody>
